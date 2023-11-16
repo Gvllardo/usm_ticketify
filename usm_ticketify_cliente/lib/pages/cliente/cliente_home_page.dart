@@ -1,0 +1,47 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:usm_ticketify_cliente/constants.dart';
+import 'package:usm_ticketify_cliente/pages/cliente/cliente_eventos_page.dart';
+
+class ClienteHomePage extends StatefulWidget {
+  const ClienteHomePage({super.key});
+
+  @override
+  State<ClienteHomePage> createState() => _ClienteHomePageState();
+}
+
+class _ClienteHomePageState extends State<ClienteHomePage> {
+
+  final estiloTextoAppBar = TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
+  
+  int paginaSeleccionada = 0;
+  Widget pagina = ClienteEventosPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Ticketify', style: estiloTextoAppBar),
+        backgroundColor: Color(0xFF6360ff),
+      ),
+      body: pagina,
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Color(0xFF8280ff),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey.shade300,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(MdiIcons.home),
+            label: 'Inicio'
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(MdiIcons.accountCircle),
+            label: 'Usuario'
+          ),
+        ],
+      ),
+    );
+  }
+}
