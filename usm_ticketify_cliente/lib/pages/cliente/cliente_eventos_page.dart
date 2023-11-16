@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:usm_ticketify_cliente/pages/cliente/tabs/cliente_prox_eventos.page.dart';
 import 'package:usm_ticketify_cliente/pages/cliente/tabs/cliente_terminados_eventos.dart';
-import 'package:usm_ticketify_cliente/pages/cliente/tabs/cliente_todos_eventos.page%20copy.dart';
+import 'package:usm_ticketify_cliente/pages/cliente/tabs/cliente_todos_eventos.page.dart';
 
 class ClienteEventosPage extends StatelessWidget {
   const ClienteEventosPage({super.key});
@@ -43,12 +43,12 @@ class ClienteEventosPage extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  ClienteTodosEventosPage(),
+                  SizedBox(child: ClienteTodosEventosPage()),
                   ClienteProximosEventosPage(),
                   ClienteEventosTerminados()
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
