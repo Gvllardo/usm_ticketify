@@ -13,19 +13,32 @@ class ClienteEventosPage extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            TabBar(
-              isScrollable: true,
-              tabs: [
-                Tab(
-                  child: Text('Todos'),
-                ),
-                Tab(
-                  child: Text('Proximos eventos'),
-                ),
-                Tab(
-                  child: Text('Eventos finalizados'),
-                ),
-              ],
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              decoration: BoxDecoration(
+                color: Color(0xFF6360ff),
+                borderRadius: BorderRadius.circular(15)
+              ),
+              child: TabBar(
+                isScrollable: true,
+                indicatorColor: Colors.white,
+                labelColor: Colors.white,
+                dividerColor: Colors.white,
+                unselectedLabelColor: Colors.grey.shade400,
+                tabs: [
+                  Tab(
+                    child: Container(
+                      child: Text('Todos'),
+                    ),
+                  ),
+                  Tab(
+                    child: Text('Proximos eventos'),
+                  ),
+                  Tab(
+                    child: Text('Eventos finalizados'),
+                  ),
+                ],
+              ),
             ),
             Expanded(
               child: TabBarView(

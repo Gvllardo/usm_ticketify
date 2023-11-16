@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:usm_ticketify_cliente/constants.dart';
 import 'package:usm_ticketify_cliente/pages/cliente/cliente_eventos_page.dart';
+import 'package:usm_ticketify_cliente/pages/cliente/cliente_login_page.dart';
 
 class ClienteHomePage extends StatefulWidget {
   const ClienteHomePage({super.key});
@@ -27,6 +28,7 @@ class _ClienteHomePageState extends State<ClienteHomePage> {
       ),
       body: pagina,
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: paginaSeleccionada,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xFF8280ff),
         selectedItemColor: Colors.white,
@@ -41,6 +43,19 @@ class _ClienteHomePageState extends State<ClienteHomePage> {
             label: 'Usuario'
           ),
         ],
+        onTap: (index) {
+          setState(() {
+            paginaSeleccionada = index;
+            switch (paginaSeleccionada){
+              case 0:
+                pagina = ClienteEventosPage();
+                break;
+              case 1:
+                pagina = ClienteLoginPage();
+                break;
+            }
+          });
+        },
       ),
     );
   }
