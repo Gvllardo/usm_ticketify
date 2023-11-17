@@ -6,8 +6,11 @@ class ClienteTodosEventosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Eventos'),
+    return ListView.builder(
+      itemCount: 1,
+      itemBuilder: (context, index) {
+        return EventoTile();
+      },
     );
   }
 }

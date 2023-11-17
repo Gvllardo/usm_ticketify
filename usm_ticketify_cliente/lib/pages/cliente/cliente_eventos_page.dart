@@ -43,7 +43,7 @@ class ClienteEventosPage extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  SizedBox(child: ClienteTodosEventosPage()),
+                  ClienteTodosEventosPage(),
                   ClienteProximosEventosPage(),
                   ClienteEventosTerminados()
                 ],

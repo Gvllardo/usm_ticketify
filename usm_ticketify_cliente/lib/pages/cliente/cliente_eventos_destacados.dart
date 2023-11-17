@@ -6,8 +6,8 @@ class ClienteEventosDestacados extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: EventoTile()
+    return Center(
+      child: Text('Proximos eventos'),
     );
   }
 }
