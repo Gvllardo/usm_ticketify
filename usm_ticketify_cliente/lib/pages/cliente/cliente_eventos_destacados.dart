@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:usm_ticketify_cliente/widgets/evento_widget.dart';
 
 class ClienteEventosDestacados extends StatelessWidget {
   const ClienteEventosDestacados({super.key});

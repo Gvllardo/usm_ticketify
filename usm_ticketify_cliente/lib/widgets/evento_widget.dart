@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class EventoTile extends StatelessWidget {
-  const EventoTile({super.key});
+  // const EventoTile({super.key,});
 
+  final String nombre;
+  final DateTime? fecha;
+  final String lugar;
+
+  //CONSTRUCTOR
+  EventoTile({
+    this.nombre = 'Sin nombre',
+    this.fecha,
+    this.lugar = 'Sin ubicacion',
+  });
+
+  final formatoDiaSemana = DateFormat('EEEE'); //FORMATO DIA DE LA SEMANA
+  final formatoDia = DateFormat('d');  //FORMATO DIA (NUMERO)
+  final formatoMesYear = DateFormat('MMMM y'); //FORMATO MES Y YEAR
+  final formatoHora = DateFormat('H:mm'); //FORMATO HORA
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +45,13 @@ class EventoTile extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('miercoles', style: TextStyle(fontSize: 12)),
-                  Text('16', style: TextStyle(fontSize: 28)),
-                  Text('octubre 2023', style: TextStyle(fontSize: 12)),
+
+                  //TEXTO DE FECHA
+                  Text('${fecha != null ? formatoDiaSemana.format(fecha!): 'lunes'}', style: TextStyle(fontSize: 12)), //DIA DE LA SEMANA
+                  Text('${fecha != null ? formatoDia.format(fecha!): 1}', style: TextStyle(fontSize: 28)), //DIA DEL MES
+                  Text('${fecha != null ? formatoMesYear.format(fecha!): 'Mes Año'}', style: TextStyle(fontSize: 12)), //MES Y YEAR
+                  //FIN TEXTO FECHA
+
                 ],
               ),
             ),
@@ -44,16 +64,21 @@ class EventoTile extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.only(bottom: 3),
+
+                      //TEXTO NOMBRE DEL EVENTO - ARTISTA
                       child: Text(
-                        'The Weeknd', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                        this.nombre, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
                       )
+                      //FIN TEXTO NOMBRE EVENTO
+
                     ),
                     Container(
                       margin: EdgeInsets.only(bottom: 3),
                       child: Row(
                         children: [
                           Icon(MdiIcons.mapMarkerOutline, size: 20),
-                          Text('Estadio Bicentenario La Florida'),
+                          //TEXTO DE LA UBICACION DEL EVENTOS
+                          Text(this.lugar),
                         ],
                       )
                     ),
@@ -63,8 +88,10 @@ class EventoTile extends StatelessWidget {
                           Expanded(
                             child: Row(
                               children: [
+                                //TEXTO HORA DEL EVENTO
                                 Icon(MdiIcons.clockOutline, size: 20),
-                                Text('16:00')
+                                //TEXTO DE LA HORA DEL EVENTO
+                                Text('${fecha != null ? formatoHora.format(fecha!): '00:00'}')
                               ],
                             ),
                           ),
