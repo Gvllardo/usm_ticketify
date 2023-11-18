@@ -6,7 +6,7 @@ class ClienteEventosTerminados extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Terminados'),
+      child: Text('Eventos finalizados'),
     );
   }
 }

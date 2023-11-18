@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:usm_ticketify_cliente/pages/cliente/tabs/cliente_prox_eventos.page.dart';
 import 'package:usm_ticketify_cliente/pages/cliente/tabs/cliente_terminados_eventos.dart';
-import 'package:usm_ticketify_cliente/pages/cliente/tabs/cliente_todos_eventos.page.dart';
 
 class ClienteEventosPage extends StatelessWidget {
   const ClienteEventosPage({super.key});
@@ -9,7 +8,7 @@ class ClienteEventosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         body: Column(
           children: [
@@ -27,11 +26,6 @@ class ClienteEventosPage extends StatelessWidget {
                 unselectedLabelColor: Colors.grey.shade400,
                 tabs: [
                   Tab(
-                    child: Container(
-                      child: Text('Todos'),
-                    ),
-                  ),
-                  Tab(
                     child: Text('Proximos eventos'),
                   ),
                   Tab(
@@ -43,7 +37,6 @@ class ClienteEventosPage extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  ClienteTodosEventosPage(),
                   ClienteProximosEventosPage(),
                   ClienteEventosTerminados()
                 ],

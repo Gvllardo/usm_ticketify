@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:usm_ticketify_cliente/pages/cliente/cliente_eventos_destacados.dart';
 import 'package:usm_ticketify_cliente/pages/cliente/cliente_eventos_page.dart';
 import 'package:usm_ticketify_cliente/pages/cliente/cliente_login_page.dart';
 
@@ -39,10 +38,6 @@ class _ClienteHomePageState extends State<ClienteHomePage> {
             label: 'Inicio'
           ),
           BottomNavigationBarItem(
-            icon: Icon(MdiIcons.star),
-            label: 'Destacados'
-          ),
-          BottomNavigationBarItem(
             icon: Icon(MdiIcons.accountCircle),
             label: 'Usuario'
           ),
@@ -55,9 +50,6 @@ class _ClienteHomePageState extends State<ClienteHomePage> {
                 pagina = ClienteEventosPage();
                 break;
               case 1:
-                pagina = ClienteEventosDestacados();
-                break;
-              case 2:
                 pagina = ClienteLoginPage();
                 break;
             }
