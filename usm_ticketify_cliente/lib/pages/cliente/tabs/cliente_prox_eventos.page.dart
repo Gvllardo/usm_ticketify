@@ -30,7 +30,8 @@ class ClienteProximosEventosPage extends StatelessWidget {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       var evento = snapshot.data!.docs[index];
-                      return EventoTile(
+                      return EventoTile(  
+                        eventoId: evento.id,
                         nombre: evento['nombre'],
                         fecha: evento['fecha'].toDate(),
                         lugar: evento['lugar'],

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:usm_ticketify_cliente/constants.dart';
+import 'package:usm_ticketify_cliente/pages/cliente/cliente_detalle_evento_page.dart';
 
-class EventoTile extends StatelessWidget {
+class EventoTile extends StatefulWidget {
   // const EventoTile({super.key,});
 
+  final String eventoId;
   final String nombre;
   final DateTime? fecha;
   final String lugar;
@@ -13,25 +15,33 @@ class EventoTile extends StatelessWidget {
   
   //CONSTRUCTOR
   EventoTile({
+    required this.eventoId,
     this.nombre = 'Sin nombre',
     this.fecha,
     this.lugar = 'Sin ubicacion',
     this.likes = 999,
   });
 
-  final formatoDiaSemana = DateFormat('EEEE'); //FORMATO DIA DE LA SEMANA
-  final formatoDia = DateFormat('d');  //FORMATO DIA (NUMERO)
-  final formatoMesYear = DateFormat('MMMM y'); //FORMATO MES Y YEAR
-  final formatoHora = DateFormat('H:mm', 'es_CL'); //FORMATO HORA
+  @override
+  State<EventoTile> createState() => _EventoTileState();
+}
 
-
+class _EventoTileState extends State<EventoTile> {
+  final formatoDiaSemana = DateFormat('EEEE'); 
+ //FORMATO DIA DE LA SEMANA
+  final formatoDia = DateFormat('d');  
+  //FORMATO DIA (NUMERO)
+  final formatoMesYear = DateFormat('MMMM y'); 
+ //FORMATO MES Y YEAR
+  final formatoHora = DateFormat('H:mm', 'es_CL'); 
+ //FORMATO HORA
   @override
   Widget build(BuildContext context) {
     
     //VARIABLE EVENTO FINALIZADO
-    bool eventoFinalizado = fecha != null ? DateTime.now().isAfter(fecha!) : false;
+    bool eventoFinalizado = widget.fecha != null ? DateTime.now().isAfter(widget.fecha!) : false;
     //VARIABLE EVENTO CERCANO
-    bool eventoCercano = fecha != null ? fecha!.difference(DateTime.now()).inDays <= 3 : false;
+    bool eventoCercano = widget.fecha != null ? widget.fecha!.difference(DateTime.now()).inDays <= 3 : false;
     
     return Column(
       children: [
@@ -70,15 +80,15 @@ class EventoTile extends StatelessWidget {
                     right: BorderSide(color: Colors.grey.shade300, width: 3)
                   )
                 ),
-                width: 100,
+                width: 110,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
 
                     //TEXTO DE FECHA
-                    Text('${fecha != null ? formatoDiaSemana.format(fecha!): 'lunes'}', style: TextStyle(fontSize: 12)), //DIA DE LA SEMANA
-                    Text('${fecha != null ? formatoDia.format(fecha!): 1}', style: TextStyle(fontSize: 30)), //DIA DEL MES
-                    Text('${fecha != null ? formatoMesYear.format(fecha!): 'Mes Año'}', style: TextStyle(fontSize: 12)), //MES Y YEAR
+                    Text('${widget.fecha != null ? formatoDiaSemana.format(widget.fecha!): 'lunes'}', style: TextStyle(fontSize: 12)), //DIA DE LA SEMANA
+                    Text('${widget.fecha != null ? formatoDia.format(widget.fecha!): 1}', style: TextStyle(fontSize: 30)), //DIA DEL MES
+                    Text('${widget.fecha != null ? formatoMesYear.format(widget.fecha!): 'Mes Año'}', style: TextStyle(fontSize: 12)), //MES Y YEAR
                     //FIN TEXTO FECHA
 
                   ],
@@ -97,7 +107,7 @@ class EventoTile extends StatelessWidget {
 
                         //TEXTO NOMBRE DEL EVENTO - ARTISTA
                         child: Text(
-                          this.nombre, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                          this.widget.nombre, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
                         )
                         //FIN TEXTO NOMBRE EVENTO
 
@@ -108,7 +118,7 @@ class EventoTile extends StatelessWidget {
                           children: [
                             Icon(MdiIcons.mapMarkerOutline, size: 20),
                             //TEXTO DE LA UBICACION DEL EVENTOS
-                            Text(this.lugar),
+                            Text(this.widget.lugar),
                           ],
                         )
                       ),
@@ -121,13 +131,13 @@ class EventoTile extends StatelessWidget {
                                   //TEXTO HORA DEL EVENTO
                                   Icon(MdiIcons.clockOutline, size: 20),
                                   //TEXTO DE LA HORA DEL EVENTO
-                                  Text('${fecha != null ? formatoHora.format(fecha!): '00:00'}')
+                                  Text('${widget.fecha != null ? formatoHora.format(widget.fecha!): '00:00'}')
                                 ],
                               ),
                             ),
                             Row(
                               children: [
-                                Text(this.likes.toString()),
+                                Text(this.widget.likes.toString()),
                                 InkWell(
                                   child: Icon(MdiIcons.heartOutline),
                                 ),
@@ -155,7 +165,12 @@ class EventoTile extends StatelessWidget {
                   child: Icon(MdiIcons.menuRightOutline),
                 ),
                 onTap:() {
-                  
+                  //VARIABLE PARA CAPTURAR EL ID DEL EVENTO
+                  String eventoId = widget.eventoId;
+
+                  //REDIRIGE A LA PAGINA DETALLE EVENTO
+                  MaterialPageRoute route = MaterialPageRoute(builder: (context) => ClienteDetallesEventoPage(eventoId: eventoId));
+                  Navigator.push(context, route);
                 },
               )
             ],

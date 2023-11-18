@@ -5,4 +5,9 @@ class FirestoreService{
     //CONSULTA EVENTOS
     return FirebaseFirestore.instance.collection('eventos').orderBy('fecha', descending: false).snapshots();
   }
+
+  Future<DocumentSnapshot> evento(String eventoId){
+    //CONSULTA SOLO EL EVENTO PARA DETALLES DEL EVENTO
+    return FirebaseFirestore.instance.collection('eventos').doc(eventoId).get();
+  }
 }

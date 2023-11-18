@@ -31,6 +31,7 @@ class ClienteEventosTerminadosPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       var evento = snapshot.data!.docs[index];
                       return EventoTerminadoTile(
+                        eventoId: evento.id,
                         nombre: evento['nombre'],
                         fecha: evento['fecha'].toDate(),
                         lugar: evento['lugar'],
