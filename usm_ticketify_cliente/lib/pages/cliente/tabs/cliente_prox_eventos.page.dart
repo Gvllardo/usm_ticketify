@@ -8,28 +8,42 @@ class ClienteProximosEventosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: FirestoreService().eventos(),
-      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting){
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
-          return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              var evento = snapshot.data!.docs[index];
-              return EventoTile(
-                nombre: evento['nombre'],
-                fecha: evento['fecha'].toDate(),
-                lugar: evento['lugar'],
-                likes: int.parse(evento['likes'].toString()),
-              );
-            },
-          );
-        }
-      },
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 10, bottom: 10),
+            alignment: Alignment.topLeft,
+            child: Text('Todos los eventos', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
+          Expanded(
+            child: StreamBuilder(
+              stream: FirestoreService().eventos(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting){
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      var evento = snapshot.data!.docs[index];
+                      return EventoTile(
+                        nombre: evento['nombre'],
+                        fecha: evento['fecha'].toDate(),
+                        lugar: evento['lugar'],
+                        likes: int.parse(evento['likes'].toString()),
+                      );
+                    },
+                  );
+                }
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

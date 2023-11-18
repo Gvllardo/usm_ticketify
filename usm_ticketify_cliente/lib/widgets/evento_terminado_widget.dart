@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:usm_ticketify_cliente/constants.dart';
 
-class EventoTile extends StatelessWidget {
+class EventoTerminadoTile extends StatelessWidget {
   // const EventoTile({super.key,});
 
   final String nombre;
@@ -12,7 +11,7 @@ class EventoTile extends StatelessWidget {
   final int likes;
   
   //CONSTRUCTOR
-  EventoTile({
+  EventoTerminadoTile({
     this.nombre = 'Sin nombre',
     this.fecha,
     this.lugar = 'Sin ubicacion',
@@ -30,35 +29,17 @@ class EventoTile extends StatelessWidget {
     
     //VARIABLE EVENTO FINALIZADO
     bool eventoFinalizado = fecha != null ? DateTime.now().isAfter(fecha!) : false;
-    //VARIABLE EVENTO CERCANO
-    bool eventoCercano = fecha != null ? fecha!.difference(DateTime.now()).inDays <= 3 : false;
     
     return Column(
       children: [
-        //SI EL EVENTO ES CERCANO SE DESTACA
-        if (eventoCercano && !eventoFinalizado)
-        Container(
-          width: 150,
-          decoration: BoxDecoration(
-            color: Color(appPrimaryColor),
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(10),
-              topLeft: Radius.circular(10)
-            )
-          ),
-          child: Container(
-            alignment: Alignment.center,
-            child: Text('Quedan pocos días!', style: TextStyle(color: Colors.white))),
-        ),
-
         //SI EL EVENTO ESTA FINALIZADO NO SE MUESTRA
-        if (!eventoFinalizado)
+        if (eventoFinalizado)
         Container(
           margin: EdgeInsets.only(bottom: 10),
           height: 125,
           decoration: BoxDecoration(
             //CONDICION DE COLOR DEL CONTAINER DE EVENTO
-            border: Border.all(color: eventoCercano ? Color(appPrimaryColor) : Colors.grey.shade300, width: 2),
+            border: Border.all(color:Colors.grey.shade300, width: 2),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
@@ -150,7 +131,7 @@ class EventoTile extends StatelessWidget {
                       topRight: Radius.circular(8),
                       bottomRight: Radius.circular(8)
                     ),
-                    color:Color(0xFF6360ff)
+                    color:Colors.grey.shade300
                   ),
                   child: Icon(MdiIcons.menuRightOutline),
                 ),

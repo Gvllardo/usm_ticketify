@@ -38,7 +38,7 @@ class ClienteEventosPage extends StatelessWidget {
               child: TabBarView(
                 children: [
                   ClienteProximosEventosPage(),
-                  ClienteEventosTerminados()
+                  ClienteEventosTerminadosPage()
                 ],
               ),
             ),
