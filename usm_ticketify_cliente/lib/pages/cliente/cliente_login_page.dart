@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:usm_ticketify_cliente/pages/admin/admin_home_page.dart';
+import 'package:usm_ticketify_cliente/services/firestore_service.dart';
 
-class ClienteLoginPage extends StatelessWidget {
+class ClienteLoginPage extends StatefulWidget {
   const ClienteLoginPage({super.key});
 
+  @override
+  State<ClienteLoginPage> createState() => _ClienteLoginPageState();
+}
+
+class _ClienteLoginPageState extends State<ClienteLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,8 +74,13 @@ class ClienteLoginPage extends StatelessWidget {
                             Text(' Iniciar sesión con Google', style: TextStyle(fontSize: 16))
                           ],
                         ),
-                        onPressed: () {
-                          
+                        onPressed: () async {
+                          await FirestoreService().iniciarSesionGoogle().then((value) {
+                            setState(() {
+                              MaterialPageRoute route = MaterialPageRoute(builder: (context) => AdminHomePage());
+                              Navigator.push(context, route);
+                            });
+                          });
                         },
                       ),
                     ),
