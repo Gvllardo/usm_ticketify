@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:usm_ticketify_cliente/constants.dart';
-import 'package:usm_ticketify_cliente/pages/cliente/cliente_detalle_evento_page.dart';
 
 class EventoAdminTile extends StatefulWidget {
   // const EventoAdminTile({super.key,});
@@ -37,9 +35,6 @@ class _EventoAdminTileState extends State<EventoAdminTile> {
  //FORMATO HORA
   @override
   Widget build(BuildContext context) {
-    
-    //VARIABLE EVENTO CERCANO
-    bool eventoCercano = widget.fecha != null ? widget.fecha!.difference(DateTime.now()).inDays <= 3 : false;
     
     return Column(
       children: [

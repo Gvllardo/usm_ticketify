@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:usm_ticketify_cliente/constants.dart';
 import 'package:usm_ticketify_cliente/services/firestore_service.dart';
 
 class ClienteDetallesEventoPage extends StatefulWidget {
@@ -114,6 +113,36 @@ class _ClienteDetallesEventoPageState extends State<ClienteDetallesEventoPage> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: ListView(
+                        padding: EdgeInsets.zero,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            child: Text(descripcion, style: estiloTextoEvento),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      
+                    },
+                    child: Text('Comprar entradas'),
                   ),
                 )
               ],

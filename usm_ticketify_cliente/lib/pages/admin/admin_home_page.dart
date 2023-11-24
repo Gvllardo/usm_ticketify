@@ -2,11 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:usm_ticketify_cliente/constants.dart';
-import 'package:usm_ticketify_cliente/pages/cliente/cliente_home_page.dart';
+import 'package:usm_ticketify_cliente/pages/admin/admin_agrega_evento_page.dart';
+import 'package:usm_ticketify_cliente/pages/admin/admin_editar_evento_page.dart';
 import 'package:usm_ticketify_cliente/services/firestore_service.dart';
 import 'package:usm_ticketify_cliente/widgets/evento_admin_widget.dart';
-import 'package:usm_ticketify_cliente/widgets/evento_widget.dart';
 
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({super.key});
@@ -26,7 +25,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
           IconButton(
             icon: Icon(MdiIcons.plus),
             onPressed: () {
-              
+              MaterialPageRoute route = MaterialPageRoute(builder: (context) => AdminAgregarEventoPage());
+              setState(() {
+                Navigator.push(context, route);
+              });
             },
           )
         ],
@@ -83,7 +85,11 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               icon: MdiIcons.pencilOutline,
                               backgroundColor: Colors.blueAccent,
                               onPressed: (context) {
-                                
+                                MaterialPageRoute route = MaterialPageRoute(builder: (context) => AdminEditarEventoPage(eventoId: evento.id));
+                                setState(() {
+                                  print(evento.id);
+                                  Navigator.push(context, route);
+                                });
                               },
                             ),
                             SlidableAction(

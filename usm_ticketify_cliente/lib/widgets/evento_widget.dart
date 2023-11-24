@@ -11,7 +11,7 @@ class EventoTile extends StatefulWidget {
   final String nombre;
   final DateTime? fecha;
   final String lugar;
-  final int likes;
+  int likes;
   
   //CONSTRUCTOR
   EventoTile({
@@ -35,6 +35,9 @@ class _EventoTileState extends State<EventoTile> {
  //FORMATO MES Y YEAR
   final formatoHora = DateFormat('H:mm', 'es_CL'); 
  //FORMATO HORA
+
+  bool likeado = false;
+
   @override
   Widget build(BuildContext context) {
     
@@ -139,7 +142,18 @@ class _EventoTileState extends State<EventoTile> {
                               children: [
                                 Text(this.widget.likes.toString()),
                                 InkWell(
-                                  child: Icon(MdiIcons.heartOutline),
+                                  child: Icon(
+                                    likeado ? MdiIcons.heart : MdiIcons.heartOutline,
+                                    color: likeado ? Colors.red : null,
+                                  ),
+                                  onTap: () {
+                                    setState(() {
+                                      likeado = !likeado;
+
+                                      widget.likes += likeado ? 1 : -1;
+                                      //SI LIKEADO ES TRUE AUMENTA 1, SI NO RESTA -1
+                                    });
+                                  },
                                 ),
                               ],
                             )
