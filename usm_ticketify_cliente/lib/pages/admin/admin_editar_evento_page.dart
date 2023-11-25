@@ -110,6 +110,27 @@ class _AdminEditarEventoPageState extends State<AdminEditarEventoPage> {
                     ),
                   ),
                 ),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: FilledButton(
+                    onPressed: () {
+                      FirestoreService().actualizarEstadoEvento(widget.eventoId, selectedOption.toString());
+                      Navigator.pop(context);
+                    },
+                    child: Text('Confirmar'),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Cancelar'),
+                  ),
+                ),
               ],
             );
           }

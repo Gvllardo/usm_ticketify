@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:usm_ticketify_cliente/pages/admin/admin_home_page.dart';
 import 'package:usm_ticketify_cliente/pages/cliente/cliente_home_page.dart';
 import 'constants.dart';
 

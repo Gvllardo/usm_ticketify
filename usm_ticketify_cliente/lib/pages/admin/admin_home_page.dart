@@ -96,7 +96,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               icon: MdiIcons.deleteOutline,
                               backgroundColor: Colors.red,
                               onPressed: (context) {
-                                
+                                FirestoreService().borrarEvento(evento.id);
                               },
                             ),
                           ],

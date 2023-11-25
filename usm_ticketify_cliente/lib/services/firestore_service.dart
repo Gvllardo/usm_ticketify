@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirestoreService{
@@ -35,11 +32,8 @@ class FirestoreService{
     });
   }
 
-  Future<void> subirImagen(File imagenFile, String nombreImagen) async {
-    Reference storageReference = FirebaseStorage.instance.ref().child(nombreImagen);
-    UploadTask uploadTask = storageReference.putFile(imagenFile);
-
-    await uploadTask.whenComplete(() => print('Imagen subida correctamente'));
+  Future <void> borrarEvento (String eventoId) async {
+    return FirebaseFirestore.instance.collection('eventos').doc(eventoId).delete();
   }
 
   Future<UserCredential> iniciarSesionGoogle() async {
